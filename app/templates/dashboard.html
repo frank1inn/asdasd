@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <!-- Strategy Overview -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">My Strategies</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="button" onclick="location.href='{{ url_for('create_strategy') }}'">
+                        Create New Strategy
+                    </button>
+                </div>
+                <hr>
+                {% if strategies %}
+                    {% for strategy in strategies %}
+                    <div class="strategy-item mb-2">
+                        <h6>{{ strategy.name }}</h6>
+                        <p class="small text-muted">{{ strategy.description }}</p>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-outline-primary">Edit</button>
+                            <button class="btn btn-outline-success">Backtest</button>
+                            <button class="btn btn-outline-danger">Delete</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted">No strategies yet. Create one to get started!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Overview -->
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Performance Overview</h5>
+            </div>
+            <div class="card-body">
+                <div id="performance-chart">
+                    <!-- Chart will be inserted here -->
+                    <p class="text-muted">No backtest data available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add any dashboard-specific JavaScript here
+</script>
+{% endblock %}
